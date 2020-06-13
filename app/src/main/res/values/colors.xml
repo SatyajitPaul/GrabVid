@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="home">#5B37B7</color>
+    <color name="whatsapp">#1194AA</color>
+    <color name="downloads">#C9379D</color>
+    <color name="profile">#E6A919</color>
+</resources>

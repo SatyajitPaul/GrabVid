@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="#666666">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/browser"
+        app:cnb_iconColor="@color/home"/>
+    <item
+        android:id="@+id/statussaver"
+        android:title="Status"
+        android:icon="@drawable/whatsapp"
+        app:cnb_iconColor="@color/whatsapp"/>
+    <item
+        android:id="@+id/downloads"
+        android:title="Downloads"
+        android:icon="@drawable/inbox"
+        app:cnb_iconColor="@color/downloads"/>
+    <item
+        android:id="@+id/profile"
+        android:title="Me"
+        android:icon="@drawable/user"
+        app:cnb_iconColor="@color/profile"/>
+
+</menu>
