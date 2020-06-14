@@ -1,10 +1,10 @@
 package com.prerevise.grabvid.adapters;
 
 import android.content.Context;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,14 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.bumptech.glide.Glide;
 import com.prerevise.grabvid.R;
 import com.prerevise.grabvid.models.StoryModel;
 import com.prerevise.grabvid.utils.Constants;
+
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,10 +75,27 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
                 }
                 File destFile = new File(destPath);
                 try {
-                    FileUtils.copyFileToDirectory(file, destFile);
+                    FileUtils.copyFileToDirectory(file, new File(destPath));
                 }catch (IOException e){
                     e.printStackTrace();
                 }
+                MediaScannerConnection.scanFile(
+                        context,
+                        new String[]{destPath + files.getFilename()},
+                        new String[]{"*/*"},
+                        new MediaScannerConnection.MediaScannerConnectionClient() {
+                            @Override
+                            public void onMediaScannerConnected() {
+
+                            }
+
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Log.d("path",path);
+                            }
+                        }
+                );
+                Toast.makeText(context,"Saved To:"+destPath,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -82,7 +103,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return fileList.size();
     }
 
     public void checkFolder(){
