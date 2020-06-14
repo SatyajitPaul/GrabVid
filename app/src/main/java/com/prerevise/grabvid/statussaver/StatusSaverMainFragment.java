@@ -1,5 +1,7 @@
 package com.prerevise.grabvid.statussaver;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -51,10 +53,10 @@ public class StatusSaverMainFragment extends Fragment {
             }
         });
 
-//        boolean result = checkPermission();
-//        if (result){
+        boolean result = checkPermission();
+        if (result){
             setUpRecyclerView();
-//        }
+        }
 
         return view;
     }
@@ -62,6 +64,11 @@ public class StatusSaverMainFragment extends Fragment {
     private void setUpRecyclerView(){
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public boolean checkPermission(){
 
     }
 }

@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewpager.setOnTouchListener({v, event -> true })
+        viewpager.currentItem = 0;
         setupViewPager(viewpager)
     }
 
