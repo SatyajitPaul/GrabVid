@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.prerevise.grabvid.R
 import com.prerevise.grabvid.models.ModelVideo
+import com.prerevise.grabvid.utils.Constants
 import com.prerevise.grabvid.utils.Constants.DOWNLOAD_DIRECTORY
 import kotlinx.android.synthetic.main.fragment_gallery.view.*
 import java.io.File
@@ -41,7 +42,7 @@ class GalleryFragment: Fragment() {
         recyclerViewGallery!!.layoutManager = recyclerViewLayoutManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-           // videoAndroidQ(context!!, requireActivity(), true)
+           videoAndroidQ(context!!, requireActivity(), true)
         }else{
             videoAndroid(context!!, requireActivity(), true)
         }
@@ -91,9 +92,40 @@ class GalleryFragment: Fragment() {
                 )
                 val durationnew: Int = mp.duration
 
-                if (absolutePathOfImage.contains())
+                if (absolutePathOfImage.contains(Constants.MY_ANDROID_10_IDENTIFIER_OF_FILE)) {
+                    val obj_model = ModelVideo()
+                    obj_model.isBoolean_selected = false
+                    obj_model.str_path = absolutePathOfImage
+                    obj_model.str_thumb = cursor.getString(thum)
+                    obj_model.duration = durationnew
+                    obj_model.id = i
+
+                    al_video.add(obj_model)
+
+                    i = i + 1
+                } else {
+                    val obj_model = ModelVideo()
+                    obj_model.isBoolean_selected = false
+                    obj_model.str_path = absolutePathOfImage
+                    obj_model.str_thumb = cursor.getString(thum)
+                    obj_model.duration = durationnew
+                    obj_model.id = i
+
+                    al_video.add(obj_model)
+                    i = i + 1
+                }
+            }catch (e: Exception) {
+                e.printStackTrace()
             }
         }
 
+        obj_adapter = AdapterVideoFolder(cn, al_video, activity)
+
+        recyclerViewGallery!!.adapter = null
+        recyclerViewGallery!!.adapter = obj_adapter
+        obj_adapter!!.notifyDataSetChanged()
+
     }
+
+    fun videoAndroidQ
 }
