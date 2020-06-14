@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.prerevise.grabvid.fragments.GalleryFragment
 import com.prerevise.grabvid.fragments.download
 import com.prerevise.grabvid.statussaver.StatusSaverMainFragment
 import com.prerevise.grabvid.utils.IOUtils
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(download(),"Home")
         adapter.addFragment(StatusSaverMainFragment(),"Status")
+        adapter.addFragment(GalleryFragment(),"Downloads");
         viewPager.adapter = adapter
 
     }
